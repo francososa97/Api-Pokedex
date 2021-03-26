@@ -21,7 +21,7 @@ namespace PokeApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             OperacionPokemon Operacion = new OperacionPokemon();
 
@@ -34,6 +34,23 @@ namespace PokeApi.Controllers
             }
 
             return Ok(cliRet);
+        }
+
+        [HttpGet]
+        [Route("tipo/{tipo}")]
+        public IActionResult GetTipo(string tipo)
+        {
+            OperacionPokemon Operacion = new OperacionPokemon();
+
+            var resultado = Operacion.GetTipoPokedex(tipo);
+
+            if (resultado == null)
+            {
+                var nf = NotFound("El cliente " + tipo.ToString() + " no existe.");
+                return nf;
+            }
+
+            return Ok(resultado);
         }
 
         [HttpPost("add")]
