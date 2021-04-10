@@ -19,7 +19,6 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 
-
 import profile from "assets/img/faces/christian.jpg";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
@@ -39,7 +38,8 @@ export default function ProfilePage(props) {
     "nombre":"",
     "tipo":[],
     "altura":0,
-    "peso":0
+    "peso":0,
+    "imagen":""
   });
   const GetPokedex = async ()=>{
     const resultado = await axios.get(`https://localhost:44313/pokemon/${id}`);
@@ -134,16 +134,20 @@ const SetTipoIcon = (tipo) =>{
         }}
         {...rest}
       />
-      <Parallax small filter image={require("assets/img/pokemonFondo.jpg")} />
+      <Parallax small filter image={require("assets/img/fondo-prueba3.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
-                  <div>
-                    <img src={profile} alt="..." className={imageClasses} />
-                  </div>
+                  {
+                    false ?
+                    <div>
+                    <img src={`assets/img/pokedex/${pokemonSeleccionado.imagen}.png`} alt="..." className={imageClasses} />
+                    </div>
+                     : null}
+
                   <div className={classes.name}>
                     <h3 className={classes.title}>{pokemonSeleccionado.nombre}</h3>
                     <br/>

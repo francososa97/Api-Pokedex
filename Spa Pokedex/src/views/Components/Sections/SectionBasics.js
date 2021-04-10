@@ -37,7 +37,6 @@ const SectionBasics = (props) => {
   const SetTipoIcon = (tipo) =>{
     let tipoPokemon = tipo.toLowerCase();
     let tipoElegido ="";
-
     switch (tipoPokemon) {
       case 'planta':
         tipoElegido="icon_planta";
@@ -92,7 +91,7 @@ const SectionBasics = (props) => {
       break;
 
       default:
-        tipoElegido="icon_volador";
+        tipoElegido=" ";
     }
     return tipoElegido;
   }
