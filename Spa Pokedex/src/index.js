@@ -1,24 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router , Route, Switch } from "react-router-dom";
 
 import "assets/scss/material-kit-react.scss?v=1.9.0";
 
 // pages for this product
 import Components from "views/Components/Components";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
-
-var hist = createBrowserHistory();
+import PokemonContext from 'context/indexContext';
 
  const Pokedex = () =>{
 
    return(
-    <Router history={hist}>
-      <Switch>
-        <Route path="/profile-page" component={ProfilePage} />
-        <Route path="/"component={Components} />
-        <Route path="/editar/:id"
+     <PokemonContext>
+      <Router>
+        <Switch>
+        <Route path="/editar/pokemon/:id"
             render={props => {
               const idPokemon = parseInt(props.match.params.id);
               return (
@@ -28,7 +25,7 @@ var hist = createBrowserHistory();
                 />
               )
           }} />
-        <Route path="/ver/:id" 
+        <Route path="/ver/pokemon/:id" 
                 render={props => {
                   const idPokemon = parseInt(props.match.params.id);
                   return (
@@ -38,8 +35,15 @@ var hist = createBrowserHistory();
                     />
                   )
           }} />
+        <Route path="/"
+          render={props => {
+              return (
+                <Components/>
+              )
+          }} />
       </Switch>
-    </Router>
+      </Router>
+    </PokemonContext>
    );
  }
 

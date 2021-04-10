@@ -34,7 +34,7 @@ export default function HeaderLinks(props) {
         >
           <Button
             color="transparent"
-            href="https://www.facebook.com/CreativeTim?ref=creativetim"
+            href="https://github.com/francososa97"
             target="_blank"
             className={classes.navLink}
           >

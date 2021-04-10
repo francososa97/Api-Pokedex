@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import 'assets/css/inicio.css';
 import {TableContainer, Table,TableHead,TableBody,TableRow,TableCell,DeleteIcon,IconButton,Icon} from '@material-ui/core';
@@ -151,12 +152,22 @@ const SectionBasics = (props) => {
                     </Grid>
                     </TableCell>
                     <TableCell>
+                    <Link
+                        to={`/editar/pokemon/${pokemon.id}`}
+                        className="btn btn-success mr-2"
+                        >
                       <IconButton aria-label="delete" onClick={() => {EditarPokemon(pokemon)}}>
-                        <EditIcon/>
+                          <EditIcon/>
                       </IconButton>
-                      <IconButton aria-label="delete" onClick={() => {VerDetallePokemon(pokemon)}}>
-                        <VisibilityIcon/>
-                      </IconButton>
+                    </Link>
+                    <Link
+                        to={`/ver/pokemon/${pokemon.id}`}
+                        className="btn btn-success mr-2"
+                        >
+                        <IconButton aria-label="delete" onClick={() => {VerDetallePokemon(pokemon)}}>
+                            <VisibilityIcon/>
+                        </IconButton>
+                    </Link>
                     </TableCell>
                   </TableRow>
                 ))}

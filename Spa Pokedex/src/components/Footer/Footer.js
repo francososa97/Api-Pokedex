@@ -7,6 +7,8 @@ import classNames from "classnames";
 // material-ui core components
 import { List, ListItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import Button from "@material-ui/core/Button";
 
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
@@ -33,53 +35,25 @@ export default function Footer(props) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/?ref=mkr-footer"
+                href="https://francososa.netlify.app/"
                 className={classes.block}
                 target="_blank"
               >
-                Creative Tim
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/presentation?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="http://blog.creative-tim.com/?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Blog
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/license?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Licenses
+                About me
               </a>
             </ListItem>
           </List>
         </div>
         <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made with{" "}
-          <Favorite className={classes.icon} /> by{" "}
-          <a
-            href="https://www.creative-tim.com?ref=mkr-footer"
-            className={aClasses}
+          &copy; {1900 + new Date().getYear()}           
+          <Button
+            color="transparent"
+            href="https://www.linkedin.com/in/franco-sosa-ab8032140/"
             target="_blank"
+            className={classes.navLink}
           >
-            Creative Tim
-          </a>{" "}
-          for a better web.
+            <LinkedInIcon/>
+          </Button>
         </div>
       </div>
     </footer>
