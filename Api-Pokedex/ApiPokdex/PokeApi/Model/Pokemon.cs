@@ -12,5 +12,6 @@ namespace PokeApi.Model
         public List<string> Tipo { get; set; }
         public decimal Altura { get; set; }
         public decimal Peso { get; set; }
+        public string Imagen { get; set; }
     }
 }
