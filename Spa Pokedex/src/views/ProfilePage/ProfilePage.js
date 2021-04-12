@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from "react";
-import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -18,6 +18,7 @@ import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import profile from "assets/img/faces/christian.jpg";
 
@@ -126,6 +127,7 @@ const SetTipoIcon = (tipo) =>{
     <div>
       <Header
         color="transparent"
+        brand={<Link to={`/`}><ArrowBackIcon/></Link>}
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
@@ -141,14 +143,9 @@ const SetTipoIcon = (tipo) =>{
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
-                  {
-                    false ?
-                    <div>
-                    <img src={`assets/img/pokedex/${pokemonSeleccionado.imagen}.png`} alt="..." className={imageClasses} />
-                    </div>
-                     : null}
-
+                  <br/>
                   <div className={classes.name}>
+                    <br/>
                     <h3 className={classes.title}>{pokemonSeleccionado.nombre}</h3>
                     <br/>
                     <h4 className={classes.title}>#{pokemonSeleccionado.id}</h4>
@@ -180,3 +177,12 @@ const SetTipoIcon = (tipo) =>{
     </div>
   );
 }
+
+
+/*
+
+                  <div>
+                  <img src={`assets/img/pokedex/${pokemonSeleccionado.imagen}.png`} alt="..." className={imageClasses} />
+                  </div>
+
+*/

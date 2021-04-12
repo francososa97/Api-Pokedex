@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gr9G2ppoY1FB19/RAK1YhK16tXihYYFiWIoKc/3q5Zk+HFLPl5jYJWVSnK/iYVi1lg2sRu42AWf7O5wmsAKiwA==",
+  "dgSpecHash": "UC2HD/8/xwmdi1i7JjZsnZZWxUls0FtpjO0rCnT7ITdaQglwWI8f/R06dQBo/z/kq15Si+WJan63yeLIfx7hVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\Documents\\Repos\\.net\\PokeApi\\PokeApi\\PokeApi.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\Documents\\Repos\\React\\Pokedex-MaterialUI\\Api-Pokedex\\Api-Pokedex\\ApiPokdex\\PokeApi\\PokeApi.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
