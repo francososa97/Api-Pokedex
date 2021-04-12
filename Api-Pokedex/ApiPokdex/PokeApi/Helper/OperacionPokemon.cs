@@ -10,7 +10,7 @@ namespace PokeApi.Helper
     {
         public List<Pokemon> Pokedex = new List<Pokemon>()
         {
-             new Pokemon() { Id = 1,Imagen = "001", Nombre = "Bulbasaur",Tipo = new List<string>{"planta","veneno" },Altura=Convert.ToDecimal("1.2"),Peso=Convert.ToDecimal("6,9")},
+             new Pokemon() { Id = 1,Imagen = "001", Nombre = "Bulbasaur",Tipo = new List<string>{"planta","veneno" },Altura=Convert.ToDecimal("0.7"),Peso=Convert.ToDecimal("6,9")},
              new Pokemon() { Id = 2,Imagen = "002", Nombre = "Ivysaur",Tipo = new List<string>{"planta","veneno" },Altura=Convert.ToDecimal("1.0"),Peso=Convert.ToDecimal("13,0")},
              new Pokemon() { Id = 3,Imagen = "003", Nombre = "Venusaur",Tipo = new List<string>{"planta","veneno" },Altura=Convert.ToDecimal("2"),Peso=Convert.ToDecimal("100")},
              new Pokemon() { Id = 4,Imagen = "004", Nombre = "Charmander",Tipo = new List<string>{"Fuego" },Altura=Convert.ToDecimal("0,6 "),Peso=Convert.ToDecimal("8,5")},
@@ -177,7 +177,6 @@ namespace PokeApi.Helper
         public void AddPokedex(Pokemon nuevoCliente)
         {
             Pokedex.Add(nuevoCliente);
-            //validar por id
         }
         public bool DeletePokemon(int id)
         {
@@ -209,6 +208,25 @@ namespace PokeApi.Helper
 
             }
             return Resultado;
+        }
+
+
+        public bool ModificarPokemon(int id, Pokemon NuevoPokemon)
+        {
+            var PokemonSolicitado = Pokedex.Where(Pokemon => Pokemon.Id == id).FirstOrDefault();
+
+            PokemonSolicitado.Altura = NuevoPokemon.Altura;
+            PokemonSolicitado.Peso = NuevoPokemon.Peso;
+
+            if(PokemonSolicitado.Altura == NuevoPokemon.Altura && PokemonSolicitado.Peso == NuevoPokemon.Peso)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
     }

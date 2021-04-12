@@ -21,7 +21,7 @@ import PokemonContext from 'context/indexContext';
               return (
                 <ProfilePage 
                   id={idPokemon}
-                  operacion = "put"
+                  operacion = "Put"
                 />
               )
           }} />

@@ -1,15 +1,14 @@
 import React,{useState,useEffect,useContext} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -19,8 +18,12 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
+import Button from '@material-ui/core/Button';
+import Swal from 'sweetalert2';
+import EditIcon from '@material-ui/icons/Edit';
+import {IconButton} from '@material-ui/core';
 import profile from "assets/img/faces/christian.jpg";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import PokemonContext from '../../context/indexContext';
@@ -29,10 +32,9 @@ const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
 
-  const { id,operation} = props;
-  const [totalPages,SetTotalPages] = useState(0);
-  const ObtenerOperacion = (operation) => operation === "get" ? true :  operation === "put"? false : "none";
-  const [flagOperacion, SetFlagOperacion] = useState(ObtenerOperacion(operation));
+  const { id,operacion} = props;
+  const [flagOperacion, SetFlagOperacion] = useState(operacion);
+  const [grisarBotonContinuar,SetGrisarContinuar] = useState(true);
   let alturaFormateada ="";
   let pesoFormateado ="";
   const [pokemonSeleccionado,SetPokemonSeleccionado] = useState(    
@@ -126,6 +128,48 @@ const SetTipoIcon = (tipo) =>{
     classes.imgFluid
   );
 
+  const GuardarValor = (nombreCampo,valor,pokemon) =>{
+
+    switch (nombreCampo) {
+      case "altura":
+        pokemon.altura = parseInt(valor);
+        break;
+      case "peso":
+        pokemon.peso = parseInt(valor);
+        break;
+    
+      default:
+        pokemon.altura = parseInt(valor);
+        break;
+    }
+    SetPokemonSeleccionado(pokemon);
+    SetGrisarContinuar(false);
+
+
+  }
+
+  const GuardarRegistro = async () => {
+
+      const url = `https://localhost:44313/pokemon/${pokemonSeleccionado.id}`;
+      try {
+          const resultado = await axios.put(url, pokemonSeleccionado);
+          if(resultado.status === 200) {
+              Swal.fire(
+                  'Operacion Extiosa',
+                  'El Registro fue editado Correctamente',
+                  'success'
+              )
+          }
+      } catch (error) {
+          console.log(error);
+         Swal.fire(
+              'Operacion Extiosa',
+              'El Registro fue editado Correctamente',
+              'success'
+              )
+      }
+  }
+
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div>
@@ -148,6 +192,18 @@ const SetTipoIcon = (tipo) =>{
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <br/>
+                  <div id="icono-detalle">
+
+                    {
+                      flagOperacion === "Get" ? 
+                        <IconButton aria-label="delete" onClick={() => {SetFlagOperacion("Put")}}><VisibilityIcon/></IconButton>
+                        :  
+                        <IconButton aria-label="delete" onClick={() => {SetFlagOperacion("Get")}}><EditIcon/></IconButton>
+                    }
+                   
+                   
+                  </div>
+
                   <div className={classes.name}>
                     <br/>
                     <h3 className={classes.title}>{pokemonSeleccionado.nombre}</h3>
@@ -163,6 +219,7 @@ const SetTipoIcon = (tipo) =>{
                       })}
                     </Grid>
                   </div>
+                  {flagOperacion === "Get"?
                   <Grid container spacing={3}>
                     <Grid item xs={6}>
                       <h4 className={classes.title}>Altura: {pokemonSeleccionado.altura} metros.</h4>
@@ -171,7 +228,42 @@ const SetTipoIcon = (tipo) =>{
                       <h4 className={classes.title}>Peso: {pokemonSeleccionado.peso} Kg.</h4>
                     </Grid>
                   </Grid>
+                  :
+                  flagOperacion === "Put"?
+                  <>
+                    <h4 id="subtitulo-detalle" className={classes.title}>¿De que altura o peso es tu {pokemonSeleccionado.nombre}?</h4>
+                    <Grid container spacing={3}>
+                    <Grid item xs={6}>
+                    <TextField type="number" id="standard-basic" label="Altura" onChange={(e) => {GuardarValor("altura",e.target.value,pokemonSeleccionado)}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                    <TextField  type="number" id="standard-basic" label="Peso" onChange={(e) => {GuardarValor("peso",e.target.value,pokemonSeleccionado)}} />
+                    </Grid>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <Button
+                          size="large" className={classes.margin}
+                          id="boton-guardar"
+                          variant="contained"
+                          color="default"
+                          disabled= {grisarBotonContinuar}
+                          startIcon={<CloudUploadIcon />}
+                          onClick ={() => {GuardarRegistro()}}
+                        >
+                          Upload
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  </>
+                  : null
+                  
+                  }
+
+
                 </div>
+                
               </GridItem>
             </GridContainer>
           </div>

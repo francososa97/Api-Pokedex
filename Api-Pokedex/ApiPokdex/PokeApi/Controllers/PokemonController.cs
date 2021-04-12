@@ -70,5 +70,20 @@ namespace PokeApi.Controllers
             return Ok(operacionExtiosa);
         }
 
+        [HttpPost("put")]
+        public IActionResult ModificarPokemon(int id,Pokemon PokemonModificado)
+        {
+            OperacionPokemon Operacion = new OperacionPokemon();
+            bool Modificacion = Operacion.ModificarPokemon(id,PokemonModificado);
+
+            if(!Modificacion)
+            {
+                var noEncontrado = NotFound("El cliente " + id.ToString() + " no existe.");
+                return noEncontrado;
+            }
+
+            return Ok(Modificacion);
+        }
+
     }
 }
