@@ -74,6 +74,35 @@
 			"response": []
 		},
 		{
+			"name": "Put Pokemon",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"Id\" :152,\r\n    \"Nombre\": \"new two\",\r\n    \"Tipo\" :[\"psiquico\"],\r\n    \"Altura\":2.2,\r\n    \"Peso\":150\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44313/pokemon/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44313",
+					"path": [
+						"pokemon",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Pokemon",
 			"request": {
 				"method": "DELETE",
