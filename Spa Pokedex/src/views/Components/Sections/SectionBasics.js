@@ -135,8 +135,8 @@ const SectionBasics = (props) => {
                   <TableRow>
                     <TableCell>{pokemon.id}</TableCell>
                     <TableCell>{pokemon.nombre}</TableCell>
-                    <TableCell>{pokemon.altura}</TableCell>
-                    <TableCell>{pokemon.peso}</TableCell>
+                    <TableCell>{new Intl.NumberFormat(["ban", "id"]).format(pokemon.altura)}</TableCell>
+                    <TableCell>{new Intl.NumberFormat(["ban", "id"]).format(pokemon.peso)}</TableCell>
                     <TableCell>
                     <Grid container justify="center" spacing={2}>
                       {pokemon.tipo.map(tipo =>{

@@ -33,6 +33,8 @@ export default function ProfilePage(props) {
   const [totalPages,SetTotalPages] = useState(0);
   const ObtenerOperacion = (operation) => operation === "get" ? true :  operation === "put"? false : "none";
   const [flagOperacion, SetFlagOperacion] = useState(ObtenerOperacion(operation));
+  let alturaFormateada ="";
+  let pesoFormateado ="";
   const [pokemonSeleccionado,SetPokemonSeleccionado] = useState(    
     {
     "id":0,
@@ -45,6 +47,8 @@ export default function ProfilePage(props) {
   const GetPokedex = async ()=>{
     const resultado = await axios.get(`https://localhost:44313/pokemon/${id}`);
     SetPokemonSeleccionado(resultado.data);
+    alturaFormateada = new Intl.NumberFormat(["ban", "id"]).format(resultado.data.altura);
+    pesoFormateado= new Intl.NumberFormat(["ban", "id"]).format(resultado.data.peso);
 }
 
 const SetTipoIcon = (tipo) =>{
