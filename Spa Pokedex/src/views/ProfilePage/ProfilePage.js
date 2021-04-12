@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useContext} from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
@@ -15,18 +15,15 @@ import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
 import EditIcon from '@material-ui/icons/Edit';
 import {IconButton} from '@material-ui/core';
-import profile from "assets/img/faces/christian.jpg";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import PokemonContext from '../../context/indexContext';
 
 const useStyles = makeStyles(styles);
 
@@ -273,7 +270,6 @@ const SetTipoIcon = (tipo) =>{
     </div>
   );
 }
-
 
 /*
 

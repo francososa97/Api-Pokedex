@@ -2,31 +2,35 @@ import React,{useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import 'assets/css/inicio.css';
-import {TableContainer, Table,TableHead,TableBody,TableRow,TableCell,DeleteIcon,IconButton,Icon} from '@material-ui/core';
+import {TableContainer, Table,TableHead,TableBody,TableRow,TableCell,IconButton,} from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import Grid from '@material-ui/core/Grid';
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
+import Mock from "Mock/Pokedex.js";
 
 const SectionBasics = (props) => {
 
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [pokedex,SetPokedex] = useState([]);
   const [rellamado,SetRellamado]=useState(true);
-  const [pokedexOnPage, SetPokedexOnPage] = useState([]);
   const [page, setPage] = useState(0);
-  const [totalPages,SetTotalPages] = useState(0);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, pokedex.length - page * rowsPerPage);
 
   const GetPokedex = async ()=>{
-      const resultado = await axios.get('https://localhost:44313/pokemon');
-      SetPokedex(resultado.data);
-      let cantidadRegistrosPorPantalla = 20;
-      let cantidadRegistros = resultado.data.length;
-      let cantidadPnatallas = cantidadRegistros % cantidadRegistrosPorPantalla;
-      SetTotalPages(cantidadPnatallas);
+
+      let ServicioMokeado = true;
+      if(ServicioMokeado)
+      {
+        const resultado = Mock;
+        SetPokedex(resultado);
+      }
+      else{
+        const resultado = await axios.get('https://localhost:44313/pokemon');
+        SetPokedex(resultado.data);
+      }
   }
 
   const handleChangeRowsPerPage = event => {
